@@ -1,0 +1,418 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "# swagger-bootstrap-ui-demo RESTful APIs",
+        "version": "1.0",
+        "title": "后台管理系统API文档",
+        "termsOfService": "http://www.xx.com/",
+        "contact": {
+            "name": "xxx",
+            "url": "http://dsdfasd",
+            "email": "XXXX@cc.com"
+        }
+    },
+    "host": "127.0.0.1:8080",
+    "basePath": "/springboot2",
+    "tags": [
+        {
+            "name": "log-controller",
+            "description": "Log Controller"
+        },
+        {
+            "name": "地区",
+            "description": "Area Controller"
+        }
+    ],
+    "paths": {
+        "/springboot2/area/getArea": {
+            "get": {
+                "tags": [
+                    "地区"
+                ],
+                "summary": "getArea",
+                "operationId": "getAreaUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "id",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64",
+                        "allowEmptyValue": false
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "登录令牌",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "RespDataOfobject",
+                            "$ref": "#/definitions/RespDataOfobject"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/springboot2/area/upload": {
+            "post": {
+                "tags": [
+                    "地区"
+                ],
+                "summary": "上传文件",
+                "description": "上传文件",
+                "operationId": "uploadUsingPOST",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "file",
+                        "in": "formData",
+                        "description": "上传文件",
+                        "required": true,
+                        "type": "file"
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "登录令牌",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "RespData",
+                            "$ref": "#/definitions/RespData"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/springboot2/area/validate": {
+            "get": {
+                "tags": [
+                    "地区"
+                ],
+                "summary": "validate",
+                "operationId": "validateUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "areaVo",
+                        "description": "areaVo",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "AreaVo",
+                            "$ref": "#/definitions/AreaVo"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "登录令牌",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "RespDataOfobject",
+                            "$ref": "#/definitions/RespDataOfobject"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/springboot2/area/validate2": {
+            "get": {
+                "tags": [
+                    "地区"
+                ],
+                "summary": "validate2",
+                "operationId": "validate2UsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "data2",
+                        "in": "query",
+                        "description": "参数data2",
+                        "required": false,
+                        "type": "string",
+                        "allowEmptyValue": false
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "登录令牌",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "RespDataOfobject",
+                            "$ref": "#/definitions/RespDataOfobject"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/springboot2/changeLog": {
+            "get": {
+                "tags": [
+                    "log-controller"
+                ],
+                "summary": "changeLog",
+                "operationId": "changeLogUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "logLevel",
+                        "in": "query",
+                        "description": "logLevel",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "packageName",
+                        "in": "query",
+                        "description": "packageName",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "登录令牌",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "RespDataOfstring",
+                            "$ref": "#/definitions/RespDataOfstring"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/springboot2/levelb": {
+            "get": {
+                "tags": [
+                    "log-controller"
+                ],
+                "summary": "updateLogbackLevelj",
+                "operationId": "updateLogbackLeveljUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "level",
+                        "in": "query",
+                        "description": "level",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "登录令牌",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        },
+        "/springboot2/log": {
+            "get": {
+                "tags": [
+                    "log-controller"
+                ],
+                "summary": "log",
+                "operationId": "logUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "packageName",
+                        "in": "query",
+                        "description": "packageName",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "token",
+                        "in": "header",
+                        "description": "登录令牌",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "RespDataOfstring",
+                            "$ref": "#/definitions/RespDataOfstring"
+                        }
+                    }
+                },
+                "deprecated": false
+            }
+        }
+    },
+    "definitions": {
+        "AreaVo": {
+            "type": "object",
+            "properties": {
+                "areaCode": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "areaName": {
+                    "type": "string"
+                }
+            },
+            "title": "AreaVo"
+        },
+        "RespData": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "状态码；1-成功，0-失败，-1-重新登录"
+                },
+                "data": {
+                    "type": "object",
+                    "description": "返回数据"
+                },
+                "debugInfo": {
+                    "type": "string"
+                },
+                "failed": {
+                    "type": "boolean"
+                },
+                "msg": {
+                    "type": "string",
+                    "description": "错误描述"
+                },
+                "reLogin": {
+                    "type": "boolean"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            },
+            "title": "RespData"
+        },
+        "RespDataOfobject": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "状态码；1-成功，0-失败，-1-重新登录"
+                },
+                "data": {
+                    "type": "object",
+                    "description": "返回数据"
+                },
+                "debugInfo": {
+                    "type": "string"
+                },
+                "failed": {
+                    "type": "boolean"
+                },
+                "msg": {
+                    "type": "string",
+                    "description": "错误描述"
+                },
+                "reLogin": {
+                    "type": "boolean"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            },
+            "title": "RespDataOfobject"
+        },
+        "RespDataOfstring": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "状态码；1-成功，0-失败，-1-重新登录"
+                },
+                "data": {
+                    "type": "string",
+                    "description": "返回数据"
+                },
+                "debugInfo": {
+                    "type": "string"
+                },
+                "failed": {
+                    "type": "boolean"
+                },
+                "msg": {
+                    "type": "string",
+                    "description": "错误描述"
+                },
+                "reLogin": {
+                    "type": "boolean"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            },
+            "title": "RespDataOfstring"
+        }
+    }
+}
