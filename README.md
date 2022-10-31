@@ -4,7 +4,7 @@
 
 ## 参考
 
-<a href="https://zhuanlan.zhihu.com/p/501477368" target="_blank" >见</a>
+<a href="https://zhuanlan.zhihu.com/p/501477368" target="_blank" >参考</a>
 
 ## 初始化项目
 
@@ -22,7 +22,7 @@ mkdir config controller dao middleware model router service tmp util constant in
 
 ### 安装
 
-<a href="https://github.com/cosmtrek/air/issues/135" target="_blank" >见 issues 135</a>
+<a href="https://github.com/cosmtrek/air/issues/135" target="_blank" >参考 issues 135</a>
 
 ```
 $ curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
@@ -200,7 +200,7 @@ id 用于标识操作的唯一字符串。在所有 API 操作中必须唯一。
 
 ```
 
-<a href="https://gitee.com/youbeiwuhuan/knife4go#https://gitee.com/xiaoym/knife4j" target="_blank" >见</a>
+<a href="https://gitee.com/youbeiwuhuan/knife4go#https://gitee.com/xiaoym/knife4j" target="_blank" >参考</a>
 
 ## 例子
 
