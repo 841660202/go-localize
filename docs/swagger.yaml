@@ -1,5 +1,47 @@
-basePath: /ap1/v1
-host: petstore.swagger.io:8001
+basePath: /api/v1
+definitions:
+  controller.Message:
+    properties:
+      message:
+        example: message
+        type: string
+    type: object
+  model.Account:
+    properties:
+      id:
+        example: 1
+        format: int64
+        type: integer
+      name:
+        example: account name
+        type: string
+      uuid:
+        example: 550e8400-e29b-41d4-a716-446655440000
+        format: uuid
+        type: string
+    type: object
+  model.AddAccount:
+    properties:
+      name:
+        example: account name
+        type: string
+    type: object
+  model.UpdateAccount:
+    properties:
+      name:
+        example: account name
+        type: string
+    type: object
+  util.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      message:
+        example: status bad request
+        type: string
+    type: object
+host: localhost:8080
 info:
   contact:
     email: support@swagger.io
@@ -13,11 +55,228 @@ info:
   title: Swagger Example API
   version: "1.0"
 paths:
+  /accounts:
+    get:
+      consumes:
+      - application/json
+      description: get accounts
+      operationId: ListAccounts
+      parameters:
+      - description: name search by q
+        format: email
+        in: query
+        name: q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.Account'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+      summary: List accounts
+      tags:
+      - 账号
+    post:
+      consumes:
+      - application/json
+      description: add by json account
+      operationId: AddAccount
+      parameters:
+      - description: Add account
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/model.AddAccount'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Account'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+      summary: Add an account
+      tags:
+      - 账号
+  /accounts/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete by account ID
+      operationId: DeleteAccount
+      parameters:
+      - description: Account ID
+        format: int64
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/model.Account'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+      summary: Delete an account
+      tags:
+      - 账号
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      operationId: ShowAccount
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Account'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+      summary: Show an account
+      tags:
+      - 账号
+    patch:
+      consumes:
+      - application/json
+      description: Update by json account
+      operationId: UpdateAccount
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update account
+        in: body
+        name: account
+        required: true
+        schema:
+          $ref: '#/definitions/model.UpdateAccount'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Account'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+      summary: Update an account
+      tags:
+      - 账号
+  /accounts/{id}/images:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Upload file
+      operationId: UploadAccountImage
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: account image
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.Message'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/util.HTTPError'
+      summary: Upload account image
+      tags:
+      - 账号
   /example/helloworld:
     get:
       consumes:
       - application/json
       description: do ping
+      operationId: Helloworld
       produces:
       - application/json
       responses:
@@ -27,58 +286,308 @@ paths:
             type: string
       summary: ping example
       tags:
-      - example
-  /me:
-    get:
-      description: 描述信息
-      responses: {}
-      summary: 测试接口
-  /testapi/get-string-by-int/{some_id}:
+      - 例子
+  /examples/attribute:
     get:
       consumes:
       - application/json
-      description: get string by ID
+      description: attribute
+      operationId: getAttributeExample
       parameters:
-      - description: Some ID
-        in: path
-        name: some_id
-        required: true
+      - description: string enums
+        enum:
+        - A
+        - B
+        - C
+        in: query
+        name: enumstring
+        type: string
+      - description: int enums
+        enum:
+        - 1
+        - 2
+        - 3
+        in: query
+        name: enumint
         type: integer
+      - description: int enums
+        enum:
+        - 1.1
+        - 1.2
+        - 1.3
+        in: query
+        name: enumnumber
+        type: number
+      - description: string valid
+        in: query
+        maxLength: 10
+        minLength: 5
+        name: string
+        type: string
+      - description: int valid
+        in: query
+        maximum: 10
+        minimum: 1
+        name: int
+        type: integer
+      - default: A
+        description: string default
+        in: query
+        name: default
+        type: string
       produces:
-      - application/json
+      - text/plain
       responses:
         "200":
+          description: answer
+          schema:
+            type: string
+        "400":
           description: ok
           schema:
             type: string
-      summary: Add a new pet to the store
-  /testapi/get-struct-array-by-string/{some_id}:
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      summary: attribute example
+      tags:
+      - example
+  /examples/calc:
     get:
       consumes:
       - application/json
-      description: get struct array by ID
+      description: plus
+      operationId: getCalcExample
       parameters:
-      - description: Some ID
+      - description: used for calc
+        in: query
+        name: val1
+        required: true
+        type: integer
+      - description: used for calc
+        in: query
+        name: val2
+        required: true
+        type: integer
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: answer
+          schema:
+            type: integer
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      summary: calc example
+      tags:
+      - example
+  /examples/groups/{group_id}/accounts/{account_id}:
+    get:
+      consumes:
+      - application/json
+      description: path params
+      operationId: getPathParamsExample
+      parameters:
+      - description: Group ID
         in: path
-        name: some_id
+        name: group_id
+        required: true
+        type: integer
+      - description: Account ID
+        in: path
+        name: account_id
+        required: true
+        type: integer
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: answer
+          schema:
+            type: string
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      summary: path params example
+      tags:
+      - example
+  /examples/header:
+    get:
+      consumes:
+      - application/json
+      description: custome header
+      operationId: getHeaderExample
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Authorization
         required: true
         type: string
-      - description: Offset
-        in: query
-        name: offset
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: answer
+          schema:
+            type: string
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      summary: custome header example
+      tags:
+      - example
+  /examples/ping:
+    get:
+      consumes:
+      - application/json
+      description: do ping
+      operationId: getPingExample
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: pong
+          schema:
+            type: string
+        "400":
+          description: ok
+          schema:
+            type: string
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      summary: ping example
+      tags:
+      - example
+  /examples/post:
+    post:
+      consumes:
+      - application/json
+      description: post request example
+      operationId: getPostExample
+      parameters:
+      - description: Account Info
+        in: body
+        name: message
         required: true
-        type: integer
-      - description: Limit
-        in: query
-        name: limit
+        schema:
+          $ref: '#/definitions/model.Account'
+      produces:
+      - text/plain
+      responses:
+        "200":
+          description: success
+          schema:
+            type: string
+        "500":
+          description: fail
+          schema:
+            type: string
+      summary: post request example
+  /examples/securities:
+    get:
+      consumes:
+      - application/json
+      description: custome header
+      operationId: getSecuritiesExample
+      parameters:
+      - description: Authentication header
+        in: header
+        name: Authorization
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
       responses:
         "200":
+          description: answer
+          schema:
+            type: string
+        "400":
           description: ok
           schema:
             type: string
-      summary: get struct array by ID
+        "404":
+          description: ok
+          schema:
+            type: string
+        "500":
+          description: ok
+          schema:
+            type: string
+      security:
+      - ApiKeyAuth: []
+      - OAuth2Implicit:
+        - admin
+        - write
+      summary: custome header example  Securities
+      tags:
+      - example
+  /me:
+    delete:
+      description: 描述信息
+      operationId: DeleteMe
+      responses: {}
+      summary: 删除用户
+      tags:
+      - 用户
+    get:
+      description: 描述信息
+      operationId: GetMe
+      responses: {}
+      summary: 获取用户
+      tags:
+      - 用户
+    post:
+      description: 描述信息
+      operationId: PostMe
+      responses: {}
+      summary: 新增用户
+      tags:
+      - 用户
+    put:
+      description: 描述信息
+      operationId: PutMe
+      responses: {}
+      summary: 更新用户
+      tags:
+      - 用户
 swagger: "2.0"

@@ -1,3 +1,7 @@
+## 图
+
+<img src="http://t-blog-images.aijs.top/img/202210311134749.webp" />
+
 ## 参考
 
 <a href="https://zhuanlan.zhihu.com/p/501477368" target="_blank" >见</a>
@@ -9,33 +13,10 @@ mkdir src
 touch main.go
 go mod init go-localize
 go mod tidy
-mkdir config controller dao middleware model router service tmp util
+mkdir config controller dao middleware model router service tmp util constant internet
 ...
 
 ```
-
-## gin
-
-## knife
-
-### 安装 swag
-
-```go
-// 1. 安装 swagger
-// go install github.com/swaggo/swag/cmd/swag@latest
-
-// 2. 配置~/.zshrc  注意：引号 github 上引号没写
-// <a href="https://github.com/swaggo/swag/issues/197" target="_blank" >issues197</a>
-// export PATH="$(go env GOPATH)/bin:$PATH"
-
-// $ swag -v
-// swag version v1.8.7
-
-// swag init  // 注意，一定要和main.go处于同一级目录
-
-```
-
-<a href="https://gitee.com/youbeiwuhuan/knife4go#https://gitee.com/xiaoym/knife4j" target="_blank" >见</a>
 
 ## air
 
@@ -173,6 +154,8 @@ root = "./src"
 ## git
 
 ```
+// 空文件夹上传
+find ./ -type d -empty -execdir touch {}/.gitkeep {} \;
 git init
 git add .
 git commit -m "first commit"
@@ -180,3 +163,45 @@ git branch -M main
 git remote add origin git@github.com:841660202/go-localize.git
 git push -u origin main
 ```
+
+## gin
+
+## swag
+
+```go
+// 访问地址
+// http://localhost:8080/swagger/index.html
+
+//
+
+
+//
+```
+
+## knife
+
+注意：必须要有@ID 注解，生成 operationId，点击菜单才能正常打开
+id 用于标识操作的唯一字符串。在所有 API 操作中必须唯一。
+
+### 安装 swag
+
+```go
+// 1. 安装 swagger
+// go install github.com/swaggo/swag/cmd/swag@latest
+
+// 2. 配置~/.zshrc  注意：引号 github 上引号没写
+// <a href="https://github.com/swaggo/swag/issues/197" target="_blank" >issues197</a>
+// export PATH="$(go env GOPATH)/bin:$PATH"
+
+// $ swag -v
+// swag version v1.8.7
+
+// swag init  // 注意，一定要和main.go处于同一级目录
+
+```
+
+<a href="https://gitee.com/youbeiwuhuan/knife4go#https://gitee.com/xiaoym/knife4j" target="_blank" >见</a>
+
+## 例子
+
+<a href="https://github.com/swaggo/swag/blob/master/example/celler/main.go" target="_blank" >/swaggo/swag</a>
