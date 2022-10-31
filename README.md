@@ -168,21 +168,6 @@ git push -u origin main
 
 ## swag
 
-```go
-// 访问地址
-// http://localhost:8080/swagger/index.html
-
-//
-
-
-//
-```
-
-## knife
-
-注意：必须要有@ID 注解，生成 operationId，点击菜单才能正常打开
-id 用于标识操作的唯一字符串。在所有 API 操作中必须唯一。
-
 ### 安装 swag
 
 ```go
@@ -198,10 +183,40 @@ id 用于标识操作的唯一字符串。在所有 API 操作中必须唯一。
 
 // swag init  // 注意，一定要和main.go处于同一级目录
 
+// 访问地址
+// http://localhost:8080/swagger/index.html
+
+```
+
+## knife
+
+### 注意
+
+:::warning
+注意：必须要有@ID 注解，生成 operationId，点击菜单才能正常打开
+id 用于标识操作的唯一字符串。在所有 API 操作中必须唯一。
+:::
+
+<a href="https://github.com/swaggo/swag/pull/732" target="_blank" >/swaggo/swag/pull/732</a>
+
+```go
+// 访问链接
+// http://localhost:8080/knife/doc.html#/home
 ```
 
 <a href="https://gitee.com/youbeiwuhuan/knife4go#https://gitee.com/xiaoym/knife4j" target="_blank" >参考</a>
 
-## 例子
+### knife 优化点
+
+- 刷新页面，菜单没默认打开对应的链接
+- 复制接口/文档/地址，点击一次提示两次
+- 后续：自动生成前端代码
+
+### gin knife 例子
+
+:::warning
+注意：必须要有@ID 注解，生成 operationId，点击菜单才能正常打开
+id 用于标识操作的唯一字符串。在所有 API 操作中必须唯一。
+:::
 
 <a href="https://github.com/swaggo/swag/blob/master/example/celler/main.go" target="_blank" >/swaggo/swag</a>
